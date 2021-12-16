@@ -19,11 +19,13 @@ const modal = () => {
     modalCallBack.style.display = "none";
     modalOverlay.style.display = "none";
   });
-  modal.addEventListener("click", (e) => {
-    if (e.target.classList.contains("header-modal__close")) {
-      modalCallBack.style.display = "none";
-      modalOverlay.style.display = "none";
-    }
+  modal.forEach((popup) => {
+    popup.addEventListener("click", (e) => {
+      if (e.target.classList.contains("header-modal__close")) {
+        modalCallBack.style.display = "none";
+        modalOverlay.style.display = "none";
+      }
+    });
   });
 };
 export default modal;

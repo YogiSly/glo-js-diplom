@@ -501,6 +501,9 @@ input.error {
 }
 .benefits-inner {
   text-align: center;
+  max-width: 576px;
+  overflow: hidden;
+  margin: 0 auto;
 }
 .benefit-image {
   margin-bottom: 22px;
@@ -1598,9 +1601,16 @@ input.error {
 
 .benefits__item {
   width: 100%;
-  max-width: 185px;
+  /* max-width: 185px; */
+  flex: 0 0 33.3333333333%;
+  padding-right: 10px;
 }
-
+@media (max-width: 576px) {
+  .benefits__item {
+    flex: 0 0 100%;
+    padding-right: 0;
+  }
+}
 .benefits-arrows {
   display: flex;
   justify-content: space-between;
@@ -1665,16 +1675,16 @@ input.error {
   transform: rotate(90deg);
 }
 
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
   .benefits-wrap {
     width: 100%;
     max-width: 576px;
   }
-}
+} */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .benefits-wrap {
     width: 100%;
     max-width: 576px;
   }
-}
+} */

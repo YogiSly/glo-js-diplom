@@ -1673,6 +1673,10 @@ input.error {
   right: 25px;
   bottom: 25px;
   transform: rotate(90deg);
+  border-radius: 50%;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  opacity: 0;
 }
 
 /* @media (min-width: 576px) {

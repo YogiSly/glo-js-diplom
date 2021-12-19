@@ -1,4 +1,4 @@
-const calc = () => {
+const calc = (price = 100) => {
   const calcBlock = document.getElementById("calc");
   const typeGlass = document.getElementById("calc-type");
   const materialGlass = document.getElementById("calc-type-material");
@@ -13,8 +13,7 @@ const calc = () => {
     if (materialGlass.value != "--") {
       matVal = +materialGlass.value;
     }
-    totalValue =
-      Math.floor(+typeGlass.value * +squareGlass.value * matVal * 10) / 10;
+    totalValue = price * +typeGlass.value * +squareGlass.value * matVal;
     totalGlass.value = totalValue;
   };
   if (calcBlock) {

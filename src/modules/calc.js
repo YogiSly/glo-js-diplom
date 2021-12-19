@@ -17,14 +17,16 @@ const calc = () => {
       Math.floor(+typeGlass.value * +squareGlass.value * matVal * 10) / 10;
     totalGlass.value = totalValue;
   };
-  calcBlock.addEventListener("input", (e) => {
-    if (
-      e.target === typeGlass ||
-      e.target === squareGlass ||
-      e.target === materialGlass
-    ) {
-      countCalc();
-    }
-  });
+  if (calcBlock) {
+    calcBlock.addEventListener("input", (e) => {
+      if (
+        e.target === typeGlass ||
+        e.target === squareGlass ||
+        e.target === materialGlass
+      ) {
+        countCalc();
+      }
+    });
+  }
 };
 export default calc;

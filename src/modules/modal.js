@@ -1,4 +1,3 @@
-import { animate } from "./helpers.js";
 const modal = () => {
   const modalOverlay = document.querySelector(".overlay");
   const buttons = document.querySelectorAll(".fancyboxModal");

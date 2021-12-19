@@ -1692,3 +1692,20 @@ input.error {
     max-width: 576px;
   }
 } */
+.view-modal {
+  position: fixed;
+  top: 50%;
+  margin: 0 auto;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.45);
+  width: 100%;
+  text-align: center;
+  height: 100vh;
+}
+.view-modal img {
+  object-fit: contain;
+  max-height: 100%;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+}

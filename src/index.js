@@ -7,7 +7,20 @@ import viewer from "./modules/viewer.js";
 import sendForm from "./modules/sendForm.js";
 
 modal();
-slider();
+slider({
+  view: 3,
+  wrap: ".benefits-wrap",
+  arrows: ".benefits__arrow",
+  item: ".benefits__item",
+  times: 2000,
+});
+slider({
+  view: 2,
+  wrap: ".services-wrap",
+  arrows: ".services__arrow",
+  item: ".services__item",
+  times: 4000,
+});
 timer("22 december 2021");
 scrollUp();
 calc();

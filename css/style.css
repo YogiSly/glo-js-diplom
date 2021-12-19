@@ -505,6 +505,12 @@ input.error {
   overflow: hidden;
   margin: 0 auto;
 }
+.services-inner {
+  text-align: center;
+  max-width: 1180px;
+  overflow: hidden;
+  margin: 0 auto;
+}
 .benefit-image {
   margin-bottom: 22px;
 }
@@ -1598,15 +1604,27 @@ input.error {
   justify-content: space-between;
   margin: 0 auto;
 }
-
+.services-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
 .benefits__item {
   width: 100%;
-  /* max-width: 185px; */
   flex: 0 0 33.3333333333%;
+  padding-right: 10px;
+}
+.services__item {
+  width: 100%;
+  flex: 0 0 50%;
   padding-right: 10px;
 }
 @media (max-width: 576px) {
   .benefits__item {
+    flex: 0 0 100%;
+    padding-right: 0;
+  }
+  .services__item {
     flex: 0 0 100%;
     padding-right: 0;
   }

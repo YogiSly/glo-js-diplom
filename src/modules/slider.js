@@ -1,8 +1,9 @@
-const slider = () => {
-  const sliderBenefit = document.querySelector(".benefits-wrap");
-  const itemSliderBenefit = document.querySelectorAll(".benefits__item");
-  const prevNextBenefits = document.querySelector(".benefits-arrows");
-  let shiftSlider = sliderBenefit.style.transform.match(/\d+/gi);
+const slider = ({ view, wrap, arrows, item, times }) => {
+  const slider = document.querySelector(wrap);
+  const itemSlider = document.querySelectorAll(item);
+  const arrowsSlider = document.querySelectorAll(arrows);
+
+  let shiftSlider = slider.style.transform.match(/\d+/gi);
   let viewSlides;
   let currentSlide = 0;
   let interval = 0;
@@ -16,75 +17,64 @@ const slider = () => {
     elems[index].classList.add(strClass);
   };
 
+  const parametrSlide = () => {
+    window.screen.width > 576 ? (viewSlides = view) : (viewSlides = 1);
+    widthSlide = +(itemSlider[0].style.width = slider.offsetWidth / viewSlides);
+    shiftSlider = Number(slider.style.transform.replace(/[^\-\d+]/gi, ""));
+    slider.style.transitionDuration = ".5s";
+  };
+
   const autoSlide = () => {
-    prevSlide(itemSliderBenefit, currentSlide, "slide-active");
+    prevSlide(itemSlider, currentSlide, "slide-active");
     currentSlide++;
-    window.screen.width > 576 ? (viewSlides = 3) : (viewSlides = 1);
-    widthSlide = +(itemSliderBenefit[0].style.width =
-      sliderBenefit.offsetWidth / viewSlides);
-    shiftSlider = Number(
-      sliderBenefit.style.transform.replace(/[^\-\d+]/gi, "")
-    );
-    if (currentSlide >= itemSliderBenefit.length - (viewSlides - 1)) {
+    parametrSlide();
+    if (currentSlide >= itemSlider.length - (viewSlides - 1)) {
       currentSlide = 0;
       transSlide = 0;
     } else {
       transSlide = shiftSlider - widthSlide;
     }
-    sliderBenefit.style.transform = `translateX(${transSlide}px)`;
-    sliderBenefit.style.transitionDuration = ".5s";
-    nextSlide(itemSliderBenefit, currentSlide, "slide-active");
+    slider.style.transform = `translateX(${transSlide}px)`;
+    nextSlide(itemSlider, currentSlide, "slide-active");
   };
-  const startSlide = (timer = 2000) => {
+  const startSlide = (timer = times) => {
     interval = setInterval(autoSlide, timer);
   };
   const stopSlide = () => {
     clearInterval(interval);
   };
   startSlide();
-  prevNextBenefits.addEventListener("click", (e) => {
-    e.preventDefault();
-    stopSlide();
-    prevSlide(itemSliderBenefit, currentSlide, "slide-active");
-    if (e.target === document.querySelector(".benefits__arrow--right img")) {
-      currentSlide++;
-      window.screen.width > 576 ? (viewSlides = 3) : (viewSlides = 1);
-      widthSlide = +(itemSliderBenefit[0].style.width =
-        sliderBenefit.offsetWidth / viewSlides);
-      shiftSlider = Number(
-        sliderBenefit.style.transform.replace(/[^\-\d+]/gi, "")
-      );
-      if (currentSlide >= itemSliderBenefit.length - (viewSlides - 1)) {
-        currentSlide = 0;
-        transSlide = 0;
-      } else {
-        transSlide = shiftSlider - widthSlide;
-      }
-      sliderBenefit.style.transform = `translateX(${transSlide}px)`;
-      sliderBenefit.style.transitionDuration = ".5s";
-      startSlide();
-    } else if (
-      e.target === document.querySelector(".benefits__arrow--left img")
-    ) {
+  arrowsSlider.forEach((arrow) => {
+    arrow.addEventListener("click", (e) => {
+      e.preventDefault();
       stopSlide();
-      currentSlide--;
-      window.screen.width > 576 ? (viewSlides = 3) : (viewSlides = 1);
-      widthSlide = +(itemSliderBenefit[0].style.width =
-        sliderBenefit.offsetWidth / viewSlides);
-      shiftSlider = Number(
-        sliderBenefit.style.transform.replace(/[^\-\d+]/gi, "")
-      );
-      if (currentSlide < 0) {
-        currentSlide = itemSliderBenefit.length - viewSlides;
-        transSlide = -(widthSlide * (itemSliderBenefit.length - viewSlides));
-      } else {
-        transSlide = shiftSlider + widthSlide;
+      prevSlide(itemSlider, currentSlide, "slide-active");
+      if (e.target === document.querySelector(`${arrows}--right img`)) {
+        currentSlide++;
+        parametrSlide();
+        if (currentSlide >= itemSlider.length - (viewSlides - 1)) {
+          currentSlide = 0;
+          transSlide = 0;
+        } else {
+          transSlide = shiftSlider - widthSlide;
+        }
+        slider.style.transform = `translateX(${transSlide}px)`;
+        startSlide();
+      } else if (e.target === document.querySelector(`${arrows}--left img`)) {
+        stopSlide();
+        currentSlide--;
+        parametrSlide();
+        if (currentSlide < 0) {
+          currentSlide = itemSlider.length - viewSlides;
+          transSlide = -(widthSlide * (itemSlider.length - viewSlides));
+        } else {
+          transSlide = shiftSlider + widthSlide;
+        }
+        slider.style.transform = `translateX(${transSlide}px)`;
+        startSlide();
       }
-      sliderBenefit.style.transform = `translateX(${transSlide}px)`;
-      sliderBenefit.style.transitionDuration = ".5s";
-      startSlide();
-    }
-    nextSlide(itemSliderBenefit, currentSlide, "slide-active");
+      nextSlide(itemSlider, currentSlide, "slide-active");
+    });
   });
 };
 export default slider;

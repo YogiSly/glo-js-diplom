@@ -24,7 +24,7 @@ const sendForm = ({ formName, someElem = [] }) => {
         if (/^[\d\+]{5,16}$/gi.test(elem.value)) {
           boolPhone = true;
         } else {
-          elem.setCustomValidity("Заполните номер цифрами");
+          elem.setCustomValidity("Заполните номер цифрами, не более 16 цифр");
           elem.reportValidity();
         }
       }

@@ -57,7 +57,7 @@ const sendForm = ({ formName, someElem = [] }) => {
 
     someElem.forEach((elem) => {
       const element = document.getElementById(elem.id);
-      if (elem.id.value) {
+      if (element != null) {
         if (elem.type === "block") {
           formBody[elem.id] = element.value;
         } else {

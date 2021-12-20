@@ -56,12 +56,13 @@ const sendForm = ({ formName, someElem = [] }) => {
     });
 
     someElem.forEach((elem) => {
-      console.log(elem.id);
       const element = document.getElementById(elem.id);
-      if (elem.type === "block") {
-        formBody[elem.id] = element.value;
-      } else {
-        formBody[elem.id] = element.value;
+      if (elem.id.value) {
+        if (elem.type === "block") {
+          formBody[elem.id] = element.value;
+        } else {
+          formBody[elem.id] = element.value;
+        }
       }
     });
 
@@ -86,7 +87,6 @@ const sendForm = ({ formName, someElem = [] }) => {
   try {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      console.log("Perfect");
       submitForm();
     });
   } catch (error) {

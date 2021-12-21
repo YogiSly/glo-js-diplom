@@ -1,12 +1,12 @@
-const sendForm = ({ formName, someElem = [] }) => {
-  const form = document.getElementsByName(formName)[0];
+const sendForm = ({ formId, someElem = [] }) => {
+  const form = document.getElementById(formId);
   const statusBlock = document.createElement("div");
   const errorText = "Ошибка...";
   const successText = "Спасибо! Наш менеджер с вами свяжется";
   let boolName = false;
   let boolPhone = false;
 
-  form.noValidate = true;
+  //form.noValidate = true;
   const validate = function (list) {
     let success = false;
     boolName = false;

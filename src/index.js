@@ -26,10 +26,18 @@ scrollUp();
 calc();
 viewer();
 sendForm({
-  formName: "action-form2",
+  formId: "action-form2",
   someElem: [{ type: "block", id: "calc-total" }],
 });
 sendForm({
-  formName: "action-form",
+  formId: "action-form",
+  someElem: [{ type: "block", id: "calc-total" }],
+});
+sendForm({
+  formId: "callback-form",
+  someElem: [{ type: "block", id: "calc-total" }],
+});
+sendForm({
+  formId: "application-form",
   someElem: [{ type: "block", id: "calc-total" }],
 });
